@@ -15,9 +15,10 @@ import ShoppingCheckout from "./pages/shopping/checkout";
 import ShoppingAccount from "./pages/shopping/account";
 import CheckAuth from "./components/common/check-auth";
 import UnauthPage from "./pages/unauth";
+import Home from "./components/common/Home";
 
 export default function App() {
-  const isAuthenticated = true;
+  const isAuthenticated = false;
   const user = {
     name: "John Doe",
     email: "john.doe@example.com",
@@ -27,6 +28,7 @@ export default function App() {
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
+        <Route path="/" element={<Home/>}/>
         <Route path="/auth" element={
           <CheckAuth isAuthenticated={isAuthenticated} user={user} >
             <AuthLayout />
