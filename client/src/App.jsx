@@ -16,13 +16,15 @@ import ShoppingAccount from "./pages/shopping/account";
 import CheckAuth from "./components/common/check-auth";
 import UnauthPage from "./pages/unauth";
 import Home from "./components/common/Home";
+import { Skeleton } from "@/components/ui/skeleton"
+import { useSelector } from "react-redux";
 
 export default function App() {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
   const user = {
     name: "John Doe",
     email: "john.doe@example.com",
-    role:'user'
+    role:'admin'
   };
 
   return (

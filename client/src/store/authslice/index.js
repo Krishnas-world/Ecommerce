@@ -12,7 +12,7 @@ const authSlice = createSlice({
     initialState,
     reducers:{
         setUserInfo:(state,action)=>{
-
+            
         }
     }
 })
