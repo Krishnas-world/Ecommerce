@@ -16,8 +16,6 @@ import ShoppingAccount from "./pages/shopping/account";
 import CheckAuth from "./components/common/check-auth";
 import UnauthPage from "./pages/unauth";
 import Home from "./components/common/Home";
-import { Skeleton } from "@/components/ui/skeleton"
-import { useSelector } from "react-redux";
 
 export default function App() {
   const isAuthenticated = true;
@@ -28,7 +26,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex flex-col overflow-hidden bg-white">
+    <div className="flex flex-col overflow-hidden">
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/auth" element={

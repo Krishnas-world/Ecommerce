@@ -10,12 +10,12 @@ import {
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 
-export default function CommonForm({ formcontrols, formData, setFormData, onSubmit, buttonText }) {
-  const renderInputbyComp = (getItem) => {
+export default function CommonForm({ formcontrols, formData, setFormData, onSubmit, buttonText, isBtnDisabled}) {
+  const renderInputByComp = (getItem) => {
     let element = null;
-    const value = formData[getItem.name] || ''
+    const value = formData[getItem.name] || '';
 
-    switch (getItem.componentType) {
+    switch (getItem.componentType.toLowerCase()) { // Ensure case insensitivity
       case "input":
         element = (
           <Input
@@ -24,7 +24,7 @@ export default function CommonForm({ formcontrols, formData, setFormData, onSubm
             id={getItem.name}
             type={getItem.type}
             value={value}
-            onchange={e => setFormData({
+            onChange={e => setFormData({
               ...formData,
               [getItem.name]: e.target.value
             })}
@@ -34,19 +34,24 @@ export default function CommonForm({ formcontrols, formData, setFormData, onSubm
 
       case "select":
         element = (
-          <Select onValueChange={(value)=>setFormData({
-            ...formData,
-            [getItem.name]: value
-          })} name={getItem.name} id={getItem.name} value={value}>
+          <Select
+            onValueChange={(value) => setFormData({
+              ...formData,
+              [getItem.name]: value
+            })}
+            name={getItem.name}
+            id={getItem.name}
+            value={value}
+          >
             <SelectTrigger className="w-full">
-              <SelectValue placeholder={getItem.placeholder} />
+              <SelectValue placeholder={getItem.label} />
             </SelectTrigger>
             <SelectContent>
               {getItem.options && getItem.options.length > 0
                 ? getItem.options.map((optionItem) => (
                   <SelectItem
                     key={optionItem.id}
-                    value={optionItem.value}
+                    value={optionItem.id} // Use optionItem.id as value
                   >
                     {optionItem.label}
                   </SelectItem>
@@ -62,9 +67,9 @@ export default function CommonForm({ formcontrols, formData, setFormData, onSubm
           <Textarea
             name={getItem.name}
             placeholder={getItem.placeholder}
-            id={getItem.id}
+            id={getItem.name}
             value={value}
-            onchange={e => setFormData({
+            onChange={e => setFormData({
               ...formData,
               [getItem.name]: e.target.value
             })}
@@ -80,7 +85,7 @@ export default function CommonForm({ formcontrols, formData, setFormData, onSubm
             id={getItem.name}
             type={getItem.type}
             value={value}
-            onchange={e => setFormData({
+            onChange={e => setFormData({
               ...formData,
               [getItem.name]: e.target.value
             })}
@@ -92,18 +97,16 @@ export default function CommonForm({ formcontrols, formData, setFormData, onSubm
   };
 
   return (
-
-    <form action="" onSubmit={onsubmit}>
+    <form onSubmit={onSubmit}>
       <div className="flex flex-col gap-3">
         {formcontrols.map((controlItem) => (
-          <div key={controlItem.key} className="w-full gap-1.5">
+          <div key={controlItem.name} className="w-full gap-1.5">
             <Label className="mb-1">{controlItem.label}</Label>
-            {renderInputbyComp(controlItem)}
+            {renderInputByComp(controlItem)}
           </div>
         ))}
       </div>
-      <Button className='mt-2 w-full' type='submit'>{buttonText || "Submit"}</Button>
+      <Button disabled={isBtnDisabled} className='mt-2 w-full' type='submit'>{buttonText || "Submit"}</Button>
     </form>
-
   );
 }
