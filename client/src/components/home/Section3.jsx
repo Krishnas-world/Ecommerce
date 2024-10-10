@@ -83,26 +83,43 @@ export default function Section3() {
       </span>
 
       {/* Custom cake part */}
-      <div className="bg-freshBake-300 flex flex-col sm:flex-row justify-between items-center text-white p-6 sm:p-10 my-6 rounded-2xl shadow-lg space-y-4 sm:space-y-0 sm:space-x-6">
-        {/* Cake Customization Text and Heading */}
-        <h2 className="text-lg sm:text-2xl font-semibold text-center sm:text-left">
+      <div className="bg-freshBake-300 p-6 sm:p-10 my-6 rounded-2xl shadow-lg space-y-6">
+      <div className=" flex flex-col sm:flex-row justify-between items-center text-white sm:space-y-0 sm:space-x-8">
+        <h2 className="text-lg sm:text-2xl font-semibold text-center sm:text-left max-w-sm">
           Looking for something unique? We customize cakes just for you!!!
         </h2>
-
-        {/* Cake Images */}
         <div className="flex items-center space-x-4">
           <img
             src="/Fb/BFC/Blackforest_001_1.jpg"
             alt="Cake 1"
-            className="w-24 h-24 rounded-full object-cover border-4 border-white"
+            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-white"
           />
           <img
-            src="/Fb/BFC/Blackforest_001_1.jpg"
+            src="/Fb/CVC/Choco_venila_001_2.jpg"
             alt="Cake 2"
-            className="w-24 h-24 rounded-full object-cover border-4 border-white"
+            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-white"
+          />          
+          <img
+            src="/Fb/RedVC/Redvelvet_003_1.jpg"
+            alt="Cake 3"
+            className="hidden lg:block w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-white"
           />
         </div>
       </div>
+      <div className="w-full flex justify-center mt-6">
+      <Button
+            className="bg-white text-freshBake-300 font-semibold rounded-lg px-6 py-3 hover:bg-freshBake-200 transition-colors duration-200"
+            size="lg"
+            variant="default"
+          >
+            Customize Now 
+          </Button>
+      </div>
+      </div>
+
+      {/* Customize Now Button - Separate Below in PC */}
+
 
     </div>
   );
+}
